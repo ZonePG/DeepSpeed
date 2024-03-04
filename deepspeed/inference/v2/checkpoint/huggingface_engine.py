@@ -21,7 +21,7 @@ class HuggingFaceCheckpointEngine(CheckpointEngineBase):
 
         self.model_name_or_path = model_name_or_path
         self.auth_token = auth_token
-        self.model_config = AutoConfig.from_pretrained(self.model_name_or_path)
+        self.model_config = AutoConfig.from_pretrained(self.model_name_or_path, trust_remote_code=True)
         # Define this property here so we can use it in the model implementation
         if not hasattr(self.model_config, "max_seq_length"):
             if hasattr(self.model_config, "max_position_embeddings"):
